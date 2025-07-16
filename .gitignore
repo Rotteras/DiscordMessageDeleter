@@ -1,0 +1,8 @@
+# Ignore JetBrains IDE files
+.idea/
+
+# Ignore virtual environment
+.venv/
+
+# Ignore build output
+dist/
