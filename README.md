@@ -2,6 +2,7 @@
 A simple tool to delete all messages you've sent (or up to a specified limit) in a specific Discord channel.
 
 ⚠️ Disclaimer
+
 By using this tool, you acknowledge that it permanently deletes data and that I am not responsible for any misuse, accidental data loss, or consequences resulting from its use.
 Additionally, this tool violates Discord's Terms of Service, and using it may result in a permanent ban from Discord.
 
