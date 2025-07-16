@@ -1,7 +1,5 @@
 import requests
 import time
-import json
-from datetime import datetime
 
 
 class MessageDeleter:
@@ -31,7 +29,7 @@ class MessageDeleter:
             before (str): Message ID to fetch messages before
 
         Returns:
-            list: List of messages
+            List of messages
         """
         url = f"{self.base_url}/channels/{channel_id}/messages"
         params = {
@@ -92,13 +90,6 @@ class MessageDeleter:
             return None
 
     def delete_user_messages_in_channel(self, channel_id, max_messages=None):
-        """
-        Delete all messages by the user in a specific channel.
-
-        Args:
-            channel_id (str): Channel ID to clean
-            max_messages (int): Maximum number of messages to process (None for all)
-        """
         user_id = self.get_user_id()
         if not user_id:
             print("Unable to get user ID")
@@ -141,8 +132,8 @@ class MessageDeleter:
                 else:
                     print(f"✗ Failed to delete message {message_id}")
 
-                # Rate limiting - Discord allows ~5 deletions per 5 seconds
-                time.sleep(1.2)
+                # Rate limiting
+                time.sleep(1.25)
 
             last_message_id = messages[-1]['id']
             processed += len(messages)
@@ -151,7 +142,6 @@ class MessageDeleter:
 
 
 def main():
-    print("Discord Message Deleter")
     print("=" * 30)
 
     # Get user token
@@ -165,7 +155,7 @@ def main():
 
     deleter = MessageDeleter(user_token)
 
-    # Test token validity
+    # Test if Token is valid
     user_id = deleter.get_user_id()
     if not user_id:
         print("❌ Invalid token or connection error. Exiting.")
@@ -188,8 +178,8 @@ def main():
 
 if __name__ == "__main__":
     try:
-        # Safety confirmation
         print("⚠️  DISCORD MESSAGE DELETER ⚠️")
+        print("Usage of this tool is against Discords Terms of Service and may result in a ban. Use at your own risk.")
         print("This tool will permanently delete messages.")
         print("This action cannot be undone.")
         print("\nDo you want to continue? (type 'yes' to confirm)")
@@ -204,5 +194,4 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"\n❌ An error occurred: {e}")
 
-    # Keep console open
     input("\nPress Enter to exit...")
